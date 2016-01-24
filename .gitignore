@@ -1,12 +1,14 @@
+aplicacoes/ger_backlog/target
+aplicacoes/ger_backlog/.metadata
+aplicacoes/ger_backlog/.settings
+aplicacoes/ger_backlog/.classpath
+aplicacoes/ger_backlog/.project
+*.project
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+*.log
+*.tmp
+*~
+.DS_Store
