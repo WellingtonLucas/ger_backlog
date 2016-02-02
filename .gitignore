@@ -1,8 +1,8 @@
-aplicacoes/ger_backlog/target
-aplicacoes/ger_backlog/.metadata
-aplicacoes/ger_backlog/.settings
-aplicacoes/ger_backlog/.classpath
-aplicacoes/ger_backlog/.project
+aplicacoes/spring-social-showcase-sec-xml/target
+aplicacoes/spring-social-showcase-sec-xml/.metadata
+aplicacoes/spring-social-showcase-sec-xml/.settings
+aplicacoes/spring-social-showcase-sec-xml/.classpath
+aplicacoes/spring-social-showcase-sec-xml/.project
 *.project
 *.class
 *.jar

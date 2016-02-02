@@ -5,19 +5,22 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="socialAuthenticationFilter" class="org.springframework.social.security.SocialAuthenticationFilter"
+	<bean id="socialAuthenticationFilter" 
+		class="org.springframework.social.security.SocialAuthenticationFilter"
 		c:_0-ref="authenticationManager"
 		c:_1-ref="userIdSource"
 		c:_2-ref="usersConnectionRepository"
 		c:_3-ref="connectionFactoryLocator"
-		p:signupUrl="/signup"
-		p:rememberMeServices-ref="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices#0" /> <!-- TODO: Figure out how to wire this without this name -->
+		p:signupUrl="/signup/signup"
+		p:rememberMeServices-ref="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices#0" />
 
-	<bean id="socialAuthenticationProvider" class="org.springframework.social.security.SocialAuthenticationProvider"
+	<bean id="socialAuthenticationProvider" 
+		class="org.springframework.social.security.SocialAuthenticationProvider"
 		c:_0-ref="usersConnectionRepository"
 		c:_1-ref="socialUsersDetailService" />
 		
-	<bean id="socialUsersDetailService" class="org.springframework.social.showcase.security.SimpleSocialUsersDetailService"
+	<bean id="socialUsersDetailService" 
+		class="org.springframework.social.showcase.security.SimpleSocialUsersDetailService"
 		c:_-ref="userDetailsService" />
 	
 </beans>

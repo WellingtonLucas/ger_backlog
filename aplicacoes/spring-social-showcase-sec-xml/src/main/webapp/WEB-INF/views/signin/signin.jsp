@@ -13,13 +13,22 @@
 	</head>
 
 <body>
-	<div class="section">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-8 col-md-10 main">
-					<div class="panel panel-primary">
-			
-						<form id="signin" action="<c:url value="/signin/authenticate" />" method="post">
+	<div class="middlePage">
+		<div class="page-header">
+		  <h1 class="logo">Ger-Backlog <small>Gerencie suas atividades!</small></h1>
+		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			  <h3 class="panel-title">Please Sign In</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-5" >
+						<a href="<c:url value="/auth/facebook"/>"><img src="http://techulus.com/buttons/fb.png" /></a><br/>
+					</div>
+					<div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
+						<form class="form-horizontal" id="signin" action="<c:url value="/signin/authenticate" />" method="post">
+							<!-- AJEITAR ISSO AQUI -->
 							<div class="formInfo">
 						  		<c:if test="${param.error eq 'bad_credentials'}">
 						  		<div class="error">
@@ -35,31 +44,30 @@
 						 	 	</c:if>
 							</div>
 							<fieldset>
-								<label for="login">Username</label>
-								<input id="login" name="j_username" type="text" size="25" <c:if test="${not empty signinErrorMessage}">value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> />
-								<label for="password">Password</label>
-								<input id="password" name="j_password" type="password" size="25" />	
+							  	<input id="login" name="j_username" type="text" 
+							  		<c:if test="${not empty signinErrorMessage}">
+							  		value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> 
+								  	placeholder="Enter User Name" class="form-control input-md" />
+								<br>
+								<input id="password" name="j_password" type="password" 
+									placeholder="Enter Password" class="form-control input-md" />
+
+								<div class="spacing">
+									<a href="<c:url value="/signup"/>">
+										<small> Cadastre-se</small>
+									</a><br/>
+								</div>
+
+								<button type="submit" id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Sign In</button>
 							</fieldset>
-							<button type="submit">Sign In</button>
 							
-							<p>Some test user/password pairs you may use are:</p>
-							<ul>
-								<li>habuma/freebirds</li>
-								<li>kdonald/melbourne</li>
-								<li>rclarkson/atlanta</li>
-							</ul>
-							
-							<p>Or you can <a href="<c:url value="/signup"/>">signup</a> with a new account.</p>
 						</form>
 					</div>
+		    
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
-	<h3>Entre via Facebook:</h3>
-
-	<!-- FACEBOOK SIGNIN -->
-    <p><a href="<c:url value="/auth/facebook"/>"><img src="<c:url value="/resources/social/facebook/sign-in-with-facebook.png"/>" border="0"/></a><br/></p>
     <jsp:include page="../fragments/footer.jsp" />
 </body>
 </html>	
