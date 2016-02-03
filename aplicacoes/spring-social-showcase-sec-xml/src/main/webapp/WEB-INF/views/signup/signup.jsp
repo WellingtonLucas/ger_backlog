@@ -1,40 +1,99 @@
 <!DOCTYPE html>
-<%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
-<h3>Sign Up</h3>
 
-<c:if test="${not empty message}">
-	<div class="${message.type.cssClass}">${message.text}</div>
-</c:if>
+<html>
+<head>
+<jsp:include page="../fragments/header-estrutura.jsp" />
+<title>Cadastre-se</title>
+</head>
+<body>
 
-<c:url value="/signup" var="signupUrl" />
-<form:form id="signup" action="${signupUrl}" method="post" modelAttribute="signupForm">
-	<div class="formInfo">
-		<s:bind path="*">
-			<c:choose>
-				<c:when test="${status.error}">
-					<div class="error">Unable to sign up. Please fix the errors below and resubmit.</div>
-				</c:when>
-			</c:choose>                     
-		</s:bind>
+	<div class="middlePage">
+		<div class="page-header">
+			<h1 class="logo">Cadastre-se</h1>
+		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Realize seu cadastro</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<form:form class="form-horizontal" id="signup"
+						action="${signupUrl}" method="post" modelAttribute="signupForm">
+						<div class="form-group">
+							<div class="form-item">
+								<div class="col-sm-2 control-label">
+									<form:label path="firstName">Nome <form:errors
+											path="firstName" cssClass="error" />
+									</form:label>
+								</div>
+								<div class="col-sm-6">
+									<form:input path="firstName" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-item">
+								<div class="col-sm-2 control-label">
+									<form:label path="lastName">Sobrenome <form:errors
+											path="lastName" cssClass="error" />
+									</form:label>
+								</div>
+								<div class="col-sm-6">
+									<form:input path="lastName" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-item">
+								<div class="col-sm-2 control-label">
+									<form:label path="username">Nome de usuário <form:errors
+											path="username" cssClass="error" />
+									</form:label>
+								</div>
+								<div class="col-sm-6">
+									<form:input path="username" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-item">
+								<div class="col-sm-2 control-label">
+									<form:label path="password">Senha <form:errors
+											path="password" cssClass="error" />
+									</form:label>
+								</div>
+								<div class="col-sm-4">
+									<form:password path="password" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-2">
+								<button type="submit" class="btn btn-primary">
+									Salvar <i class="glyphicon glyphicon-floppy-disk"></i>
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<a href="javascript:history.back();"
+									class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+					</form:form>
+				</div>
+			</div>
+
+		</div>
 	</div>
-	
-	<fieldset>
-		<form:label path="firstName">First Name <form:errors path="firstName" cssClass="error" /></form:label>
-		<form:input path="firstName" />
-		<form:label path="lastName">Last Name <form:errors path="lastName" cssClass="error" /></form:label>
-		<form:input path="lastName" />
-		<form:label path="username">Username <form:errors path="username" cssClass="error" /></form:label>
-		<form:input path="username" />		
-		<form:label path="password">Password (at least 6 characters) <form:errors path="password" cssClass="error" /></form:label>
-		<form:password path="password" />
-	</fieldset>
-	<p><button type="submit">Sign Up</button></p>
-</form:form>
+</body>
+</html>
