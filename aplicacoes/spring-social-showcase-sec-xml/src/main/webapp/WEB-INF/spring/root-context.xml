@@ -18,7 +18,10 @@
 	<import resource="social-security.xml" />
 
 	<context:component-scan base-package="org.springframework.social.showcase" />
-
+	<context:component-scan base-package="br.ufc.quixada.npi.repository" />
+	<context:component-scan base-package="br.ufc.quixada.npi.service.impl.GenericServiceImpl" />
+    
 	<context:property-placeholder location="classpath:org/springframework/social/showcase/config/application.properties"/>
+	
 	
 </beans>

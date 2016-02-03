@@ -27,6 +27,7 @@ import org.springframework.social.showcase.message.Message;
 import org.springframework.social.showcase.message.MessageType;
 import org.springframework.social.showcase.signin.SignInUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,13 +47,15 @@ public class SignupController {
 	}
 
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
-	public SignupForm signupForm(WebRequest request) {
+	public String signupForm(WebRequest request, Model model) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		if (connection != null) {
 			request.setAttribute("message", new Message(MessageType.INFO, "Your " + StringUtils.capitalize(connection.getKey().getProviderId()) + " account is not associated with a Spring Social Showcase account. If you're new, please sign up."), WebRequest.SCOPE_REQUEST);
-			return SignupForm.fromProviderUser(connection.fetchUserProfile());
+			model.addAttribute("signupForm", SignupForm.fromProviderUser(connection.fetchUserProfile()));
+			return "signup/signup"; 
 		} else {
-			return new SignupForm();
+			request.setAttribute("signupForm", new SignupForm(), WebRequest.SCOPE_REQUEST);
+			return "signup/signup";
 		}
 	}
 

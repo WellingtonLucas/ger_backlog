@@ -11,7 +11,7 @@
 		c:_1-ref="userIdSource"
 		c:_2-ref="usersConnectionRepository"
 		c:_3-ref="connectionFactoryLocator"
-		p:signupUrl="/signup/signup"
+		p:signupUrl="/signup"
 		p:rememberMeServices-ref="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices#0" />
 
 	<bean id="socialAuthenticationProvider" 
