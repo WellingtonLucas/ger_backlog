@@ -7,37 +7,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://www.springframework.org/spring-social/social/tags" prefix="social" %>
 
 <html>
-<head>
-<title>Bem Vindo</title>
-<jsp:include page="../fragments/header-estrutura.jsp" />
-</head>
-<body>
-	<div class="container">
-		<div class="page-header">
-			<h1 class="logo">
-				Bem Vindo
-			</h1>
-
-		</div>
-		<div class="logo">
-			<div align="right">
-				<a class="btn btn-warning" href="<c:url value="/signout" />">Sair</a>
+	<head>
+		<jsp:include page="../fragments/header-estrutura.jsp" />
+		<title>Bem Vindo!</title>
+	</head>
+<body role="document">
+	<jsp:include page="../fragments/header.jsp" />
+	<div class="container theme-showcase" role="main">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>
+					Olá <c:out value="${account.firstName}" />!
+				</h3>
 			</div>
 			<div class="panel-body">
-				<div class="row">
-					<h3>
-						Welcome,
-						<c:out value="${account.firstName}" />
-						!
-					</h3>
+				<a class="btn btn-lg btn-default" href="<c:url value="/facebook"/>">Facebook</a>
+				<social:connected provider="facebook">
+					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook"/>">Perfil</a>
+					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/feed"/>">Feed</a>
+					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/friends"/>">Friends</a>
+					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/albums"/>">Albums</a>
+				</social:connected>
+				<button class="btn btn-lg btn-primary" id="btPostar" >Postar</button>
+				<button class="btn btn-lg btn-primary" id="btShare"> Compartilhar</button>
+				<div align="right">
+					<a class="btn btn-warning" href="<c:url value="/signout" />">Sair</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<p></p>
+	<jsp:include page="../fragments/footer.jsp" />
 </body>
 </html>

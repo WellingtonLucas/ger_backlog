@@ -11,10 +11,10 @@
 
 
 <html>
-<head>
-<jsp:include page="../fragments/header-estrutura.jsp" />
-<title>Cadastre-se</title>
-</head>
+	<head>
+		<jsp:include page="../fragments/header-estrutura.jsp" />
+		<title>Cadastre-se</title>
+	</head>
 <body>
 
 	<div class="middlePage">
@@ -32,8 +32,8 @@
 						<div class="form-group">
 							<div class="form-item">
 								<div class="col-sm-2 control-label">
-									<form:label path="firstName">Nome <form:errors
-											path="firstName" cssClass="error" />
+									<form:label path="firstName">Nome 
+										<form:errors path="firstName" cssClass="error" />
 									</form:label>
 								</div>
 								<div class="col-sm-6">
@@ -56,7 +56,8 @@
 						<div class="form-group">
 							<div class="form-item">
 								<div class="col-sm-2 control-label">
-									<form:label path="username">Nome de usuário <form:errors
+									<form:label path="username">Nome de usuário 
+										<form:errors
 											path="username" cssClass="error" />
 									</form:label>
 								</div>
@@ -72,7 +73,7 @@
 											path="password" cssClass="error" />
 									</form:label>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-6">
 									<form:password path="password" class="form-control" />
 								</div>
 							</div>
@@ -92,8 +93,8 @@
 					</form:form>
 				</div>
 			</div>
-
 		</div>
 	</div>
+	<jsp:include page="../fragments/footer.jsp" />
 </body>
 </html>

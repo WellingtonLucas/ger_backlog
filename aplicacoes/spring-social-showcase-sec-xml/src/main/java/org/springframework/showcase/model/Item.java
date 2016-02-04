@@ -17,6 +17,8 @@ public class Item {
 	private String descricao;
 	
 	private Integer escala;
+	
+	private Tema tema;
 
 	public Integer getId() {
 		return id;
@@ -40,6 +42,14 @@ public class Item {
 
 	public void setEscala(Integer escala) {
 		this.escala = escala;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 	
 	

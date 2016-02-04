@@ -1,23 +1,44 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://www.springframework.org/spring-social/social/tags" prefix="social" %>
 <%@ page session="false" %>
 
-<h3>Your Facebook Feed</h3>
-	
-<form method="POST" action="<c:url value="/facebook/feed" />">
-	<p>Post to your Facebook wall:<p>
-	<textarea id="message" name="message" rows="2" cols="60"></textarea><br/>
-	<input type="submit" value="Post" />
-</form>
-
-<div class="feed">
-<ul class="feedList">
-<c:forEach items="${feed}" var="post">
-	<li class="post">
-		<p><c:if test="${not empty post.picture}"><img src="<c:out value="${post.picture}"/>" align="top"/></c:if>
-		<c:out value="${post.message}" /> - <c:out value="${post.name}" /></p>
-	</li>
-</c:forEach>
-</ul>
-</div>
+<html>
+	<head>
+		<jsp:include page="../fragments/header-estrutura.jsp" />
+		<title>Bem Vindo!</title>
+	</head>
+<body role="document">
+	<jsp:include page="../fragments/header.jsp" />
+	<div class="container theme-showcase" role="main">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>Sua linha do tempo</h3>
+			</div>
+			<div class="panel-body">
+				<div class="feed">
+					<ul class="feedList">
+					<c:forEach items="${feed}" var="post">
+						<li class="post">
+							<c:if test="${not empty post.picture}">
+								<img src="${post.picture}" align="top"/>
+							</c:if>
+							<c:out value="${post.message}" /> - <c:out value="${post.name}" />
+							<c:out value="${post.from.name}" />
+							<hr/>
+						</li>
+					</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
