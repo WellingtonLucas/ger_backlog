@@ -15,6 +15,8 @@ public class Tema {
 
 	private String nome;
 
+	private Backlog backlog;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -31,6 +33,14 @@ public class Tema {
 		this.nome = nome;
 	}
 	
+	public Backlog getBacklog() {
+		return backlog;
+	}
+
+	public void setBacklog(Backlog backlog) {
+		this.backlog = backlog;
+	}
+
 	@Override
 	public String toString() {
 		return "id: "+getId()+" nome: "+getNome() ;
