@@ -5,6 +5,8 @@ import java.security.Principal;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import org.springframework.showcase.repository.IBacklog;
+import org.springframework.showcase.repository.h2.BacklogImp;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.showcase.account.AccountRepository;
 import org.springframework.stereotype.Controller;

@@ -23,16 +23,6 @@
 				<h3>Sua linha do tempo</h3>
 			</div>
 			<div class="panel-body">
-				<form method="POST" id="post" class="form-horizontal" action="<c:url value="/facebook/feed" />">
-					<p>Publique na sua linda do tempo:<p>
-					<div class="form-group">
-						<div class="form-item">
-							<textarea id="message" name="message" rows="2" cols="60"></textarea>
-						</div>
-					</div>
-					<button class="btn btn-primary" type="submit"> Postar </button>
-				</form>
-				
 				<div class="feed">
 					<ul class="feedList">
 					<c:forEach items="${feed}" var="post">

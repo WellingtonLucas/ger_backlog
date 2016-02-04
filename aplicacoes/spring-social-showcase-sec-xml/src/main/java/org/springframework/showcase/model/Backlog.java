@@ -18,6 +18,11 @@ public class Backlog {
 	
 	private String descricao;
 
+	public Backlog(String nome, String descricao) {
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

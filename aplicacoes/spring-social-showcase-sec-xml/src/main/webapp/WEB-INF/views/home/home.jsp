@@ -25,7 +25,6 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-lg btn-default" href="<c:url value="/connect"/>">Conexões</a>
 				<a class="btn btn-lg btn-default" href="<c:url value="/facebook"/>">Facebook</a>
 				<social:connected provider="facebook">
 					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook"/>">Perfil</a>
@@ -33,6 +32,8 @@
 					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/friends"/>">Friends</a>
 					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/albums"/>">Albums</a>
 				</social:connected>
+				<button class="btn btn-lg btn-primary" id="btPostar" >Postar</button>
+				<button class="btn btn-lg btn-primary" id="btShare"> Compartilhar</button>
 				<div align="right">
 					<a class="btn btn-warning" href="<c:url value="/signout" />">Sair</a>
 				</div>

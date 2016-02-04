@@ -4,3 +4,4 @@ create table Account (id identity,
 						firstName varchar not null, 
 						lastName varchar not null,
 						primary key (id));
+
