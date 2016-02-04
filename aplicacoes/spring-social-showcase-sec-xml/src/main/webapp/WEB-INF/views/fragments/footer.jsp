@@ -6,3 +6,4 @@
 <script src="<c:url value="/webjars/bootstrap/3.3.5/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/webjars/bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js" />"></script>
 <script src="<c:url value="/webjars/bootstrapvalidator/0.5.3/js/language/pt_BR.js" />"></script>
+<script src="<c:url value="/resources/js/validacao.js" />"></script>
