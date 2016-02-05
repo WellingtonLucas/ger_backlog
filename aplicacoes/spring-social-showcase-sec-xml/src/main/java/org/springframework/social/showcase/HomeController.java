@@ -5,9 +5,9 @@ import java.security.Principal;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-import org.springframework.showcase.repository.IBacklog;
-import org.springframework.showcase.repository.h2.BacklogImp;
+import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.showcase.account.AccountRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ public class HomeController {
 	private final Provider<ConnectionRepository> connectionRepositoryProvider;
 	
 	private final AccountRepository accountRepository;
+	
+	@Inject
+	private ConnectionRepository connectionRepository;
 
 	@Inject
 	public HomeController(Provider<ConnectionRepository> connectionRepositoryProvider, AccountRepository accountRepository) {
@@ -28,6 +31,12 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home(Principal currentUser, Model model) {
+		Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
+		if (connection != null) {
+			model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
+		}
+		
+
 		model.addAttribute("connectionsToProviders", getConnectionRepository().findAllConnections());
 		model.addAttribute(accountRepository.findAccountByUsername(currentUser.getName()));
 		return "home/home";

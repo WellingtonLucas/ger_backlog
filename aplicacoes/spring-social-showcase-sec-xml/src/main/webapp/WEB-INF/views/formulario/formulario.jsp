@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<html>
+<head>
+<c:if test="${action eq 'cadastrar' || action eq 'erroCadastro'}">
+	<c:set var="url" value="/formulario"></c:set>
+	<c:set var="descricao" value="Crie seu formulário"></c:set>
+	<c:set var="subDescri" value="Esta funcionalidade permite a criação de um formulário com perguntas e alternativas."></c:set>
+	<c:set var="titulo" value="Novo Formulário"></c:set>
+	<c:set var="txtBtn" value="Cadastrar"></c:set>
+	<c:set var="cancelar" value="/formularios"></c:set>
+</c:if>
+
+<jsp:include page="../fragments/header-estrutura.jsp" />
+<title> ${titulo} </title>
+</head>
+<body>
+
+	<jsp:include page="../fragments/header.jsp" />
+	
+	<div class="container">
+		<br>
+		<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			<h3><c:out value="${subDescri}"></c:out></h3>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4>${descricao }</h4>
+			</div>
+			<div class="panel-body">
+				<jsp:include page="../fragments/mensagens.jsp" />
+				<form:form id="id-formulario" role="form" class="form-horizontal" servletRelativeAction="${url }" 
+					commandName="formulario" method="POST">
+					<c:if test="${action eq 'editar' || action eq 'copiar' || action eq 'erroCadastro'}">
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Titulo do formulário</label>
+							<div class="col-xs-10">
+								<form:input path="titulo" type="text" class="form-control" name="titulo" required="true" />
+							</div>
+						</div>
+						<c:forEach var="pergunta" items="${formulario.perguntas}" varStatus="questId">
+							<div id="entry${questId.count}" class="clonedInput panel panel-default">
+								<div class="panel-heading">
+									<div class="form-group">
+										<label class="col-sm-2 qt1 control-label" for="perguntas[${ questId.index}].descricao">Questão ${ questId.count}:</label>
+										<div class="col-sm-9">
+											<input id="perguntas[${ questId.index}].descricao" name="perguntas[${ questId.index}].descricao" type="text" value="${pergunta.descricao }"
+											class="questao1 form-control" required />
+											<c:if test="${action eq 'editar' }">
+												<input type="hidden" name="perguntas[${ questId.index}].id" value="${pergunta.id }"/>
+											</c:if>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="radio panel-body">
+										<label class="col-sm-2 opt1 control-label" for="opcao1">
+											<input type="radio" name="opcaoR" id="opcaoR" class="optR" disabled="disabled">
+										</label>
+										<div class="col-sm-6">
+											<input id="opcao1" name="perguntas[${ questId.index}].opcoes[0].descricao" type="text" 
+												value="${pergunta.opcoes[0].descricao }" class="opcao1 form-control" required />
+											<c:if test="${action eq 'editar' }">	
+												<input type="hidden" name="perguntas[${ questId.index}].opcoes[0].id" value="${pergunta.opcoes[0].id }"/>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="radio panel-body">
+										<label class="col-xs-2 opt2 control-label" for="opcao2">
+											<input	type="radio" name="opcaoR" id="opcaoR2" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao2" name="perguntas[${ questId.index}].opcoes[1].descricao" type="text" 
+												value="${pergunta.opcoes[1].descricao }" class="opcao2 form-control" required />
+											<c:if test="${action eq 'editar' }">
+												<input type="hidden" name="perguntas[${ questId.index}].opcoes[1].id" value="${pergunta.opcoes[1].id }"/>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="radio panel-body">
+										<label class="col-xs-2 opt3 control-label" for="opcao3"> 
+											<input type="radio" name="opcaoR" id="opcaoR3" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao3" name="perguntas[${ questId.index}].opcoes[2].descricao" type="text" 
+												value="${pergunta.opcoes[2].descricao }" class="opcao3 form-control" required />
+											<c:if test="${action eq 'editar' }">
+												<input type="hidden" name="perguntas[${ questId.index}].opcoes[2].id" value="${pergunta.opcoes[2].id }"/>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="radio panel-body">
+										<label class="col-xs-2 opt4 control-label" for="opcao4"> 
+											<input type="radio" name="opcaoR" id="opcaoR4" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao4" name="perguntas[${ questId.index}].opcoes[3].descricao" type="text" 
+												value="${pergunta.opcoes[3].descricao }" class="opcao4 form-control" required />
+											<c:if test="${action eq 'editar' }">
+												<input type="hidden" name="perguntas[${ questId.index}].opcoes[3].id" value="${pergunta.opcoes[3].id }"/>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="radio panel-body">
+										<label class="col-xs-2 opt5 control-label" for="opcao5">
+											<input	type="radio" name="opcaoR" id="opcaoR5" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao5" name="perguntas[${ questId.index}].opcoes[4].descricao" type="text" 
+												value="${pergunta.opcoes[4].descricao }" class="opcao5 form-control" required />
+											<c:if test="${action eq 'editar' }">
+												<input type="hidden" name="perguntas[${ questId.index}].opcoes[4].id" value="${pergunta.opcoes[4].id }"/>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:if>
+					<c:if test="${action eq 'cadastrar'}">
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Titulo do formulário</label>
+							<div class="col-xs-10">
+								<form:input path="titulo" type="text" class="form-control" name="titulo" required="true" />
+							</div>
+						</div>
+						<div id="entry1" class="clonedInput panel panel-default">
+							<div class="panel-heading">
+								<div class="form-group">
+									<label class="col-sm-2 qt1 control-label" for="perguntas[0].descricao">Questão 1:</label>
+									<div class="col-sm-9">
+										<input id="questao1" name="perguntas[0].descricao" type="text" placeholder=""
+										class="questao1 form-control" required />
+									</div>
+								</div>
+							</div>
+							
+							<!-- Text input-->
+							<div class="radio panel-body">
+								<div class="form-group">
+									<div class="form-item">
+										<label class="col-sm-2 opt1 control-label" for="opcao1">
+											<input type="radio" name="opcaoR" id="opcaoR" class="optR" disabled="disabled">
+										</label>
+										<div class="col-sm-6">
+											<input id="opcao1" name="perguntas[0].opcoes[0].descricao" type="text" placeholder=""
+												class="opcao1 form-control" required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-item">
+										<label class="col-xs-2 opt2 control-label" for="opcao2">
+											<input	type="radio" name="opcaoR" id="opcaoR2" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao2" name="perguntas[0].opcoes[1].descricao" type="text" placeholder=""
+												class="opcao2 form-control" required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-item">
+										<label class="col-xs-2 opt3 control-label" for="opcao3"> 
+											<input type="radio" name="opcaoR" id="opcaoR3" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao3" name="perguntas[0].opcoes[2].descricao" type="text" placeholder=""
+												class="opcao3 form-control" required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-item">
+										<label class="col-xs-2 opt4 control-label" for="opcao4"> 
+											<input type="radio" name="opcaoR" id="opcaoR4" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao4" name="perguntas[0].opcoes[3].descricao" type="text" placeholder=""
+												class="opcao4 form-control" required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-item">							
+										<label class="col-xs-2 opt5 control-label" for="opcao5">
+											<input	type="radio" name="opcaoR" id="opcaoR5" class="optR" disabled="disabled">
+										</label>
+										<div class="col-xs-6">
+											<input id="opcao5" name="perguntas[0].opcoes[4].descricao" type="text" placeholder=""
+												class="opcao5 form-control" required />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" id="btnAdd" name="btnAdd"	class="btn btn-success btn-lg col-sm-2">
+								Nova questão  <i class="glyphicon glyphicon-plus"></i>
+							</button>
+							<div class="col-sm-1"></div>
+							<button type="button" id="btnDel" name="btnDel"	class="btn btn-danger btn-lg col-sm-2">
+								Remover questão  <i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</div>
+					</div>
+					
+					<div class="panel panel-default">
+						<div class="panel-body">
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="nota">Nota:</label>
+								<div class="col-sm-10">
+									<textarea id="nota" name="nota" class="form-control"
+									placeholder="Não irá adicionar alguma nota?" ></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="submit" id="submit_button" name="submit_button"
+								class="btn btn-primary btn-lg col-sm-2">${txtBtn }
+							</button>
+						</div>
+					</div>
+				</form:form>
+				<!-- end attribution -->
+			</div><!-- panel body -->
+		</div>
+	</div>
+	<jsp:include page="../fragments/footer.jsp" />
+</body>
+</html>

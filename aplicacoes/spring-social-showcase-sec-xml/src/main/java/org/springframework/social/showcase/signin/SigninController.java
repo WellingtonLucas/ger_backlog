@@ -10,7 +10,6 @@ public class SigninController {
 
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
 	public String signin(Model model) {
-		model.addAttribute("teste", "Botão");
 		return "signin/signin";
 	}
 }

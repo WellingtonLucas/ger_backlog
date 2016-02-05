@@ -17,7 +17,6 @@ package org.springframework.social.showcase.account;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,8 +24,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.showcase.model.Backlog;
-import org.springframework.showcase.repository.h2.BacklogImp;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,15 +62,5 @@ public class JdbcAccountRepository implements AccountRepository {
 				}, username);
 	}
 	
-	private void testandoBanco(){
-		BacklogImp backlogImp = new BacklogImp(jdbcTemplate);
-		backlogImp.createBacklog(new Backlog("backlogUM", "UmBacklog"));
-		backlogImp.createBacklog(new Backlog("backlogDois", "DoisBacklog"));
-		backlogImp.createBacklog(new Backlog("backlogTres", "TresBacklog"));
-		
-		for (int i = 0; i < backlogImp.listBacklog().size(); i++) {
-			System.out.println(backlogImp.listBacklog().get(i).getId());
-		}
-	}
 
 }

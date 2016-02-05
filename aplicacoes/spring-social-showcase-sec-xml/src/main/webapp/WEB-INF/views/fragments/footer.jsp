@@ -7,5 +7,6 @@
 <script src="<c:url value="/webjars/bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js" />"></script>
 <script src="<c:url value="/webjars/bootstrapvalidator/0.5.3/js/language/pt_BR.js" />"></script>
 <script src="<c:url value="/resources/js/validacao.js" />"></script>
+<script src="<c:url value="/resources/js/formulario.js" />"></script>
 <script src='http://connect.facebook.net/en_US/all.js'></script>
 <script src="<c:url value="/resources/js/facebook.js" />"></script>
