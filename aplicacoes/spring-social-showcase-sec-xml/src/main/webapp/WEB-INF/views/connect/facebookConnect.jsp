@@ -8,7 +8,7 @@
 <h3>Connect to Facebook</h3>
 
 <form action="<c:url value="/connect/facebook" />" method="POST">
-	<input type="hidden" name="scope" value="public_profile,	user_posts,publish_actions,user_photos" />
+	<input type="hidden" name="scope" value="public_profile,user_friends,user_posts,publish_actions,user_photos" />
 	<div class="formInfo">
 		<p>You aren't connected to Facebook yet. Click the button to connect Spring Social Showcase with your Facebook account.</p>
 	</div>

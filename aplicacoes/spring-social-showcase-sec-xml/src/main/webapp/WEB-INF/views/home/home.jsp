@@ -7,34 +7,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ taglib uri="http://www.springframework.org/spring-social/social/tags" prefix="social" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib
+	uri="http://www.springframework.org/spring-social/social/tags"
+	prefix="social"%>
 
 <html>
-	<head>
-		<jsp:include page="../fragments/header-estrutura.jsp" />
-		<title>Bem Vindo!</title>
-	</head>
+<head>
+<jsp:include page="../fragments/header-estrutura.jsp" />
+<title>Bem Vindo!</title>
+</head>
 <body role="document">
 	<jsp:include page="../fragments/header.jsp" />
 	<div class="container theme-showcase" role="main">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3>
-					Olá <c:out value="${account.firstName}" />!
+					Olá
+					<c:out value="${account.firstName}" />
+					!
 				</h3>
+				<div align="right">
+					<a class="btn btn-warning" href="<c:url value="/signout" />">Sair</a>
+				</div>
 			</div>
 			<div class="panel-body">
 				<social:connected provider="facebook">
 					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook"/>">Perfil</a>
-					<a class="btn btn-lg btn-primary" href="<c:url value="/facebook/feed"/>">Feed</a>
+
+					<a class="btn btn-lg btn-primary"
+						href="<c:url value="/facebook/feed"/>">Feed</a>
+					<a class="btn btn-lg btn-primary"
+						href="<c:url value="/facebook/albums"/>">Albums</a>
 				</social:connected>
-				<button class="btn btn-lg btn-primary" id="btPostar" >Postar</button>
-				<button class="btn btn-lg btn-primary" id="btShare"> Compartilhar</button>
-				<a class="btn btn-lg btn-primary" href="<c:url value="/formulario"/>">Formulario</a>
-				<div align="right">
-					<a class="btn btn-warning" href="<c:url value="/signout" />">Sair</a>
-				</div>
+					<button class="btn btn-lg btn-primary" id="btPostar" >Postar</button>
+					<button class="btn btn-lg btn-primary" id="btShare"> Compartilhar</button>
+					<a class="btn btn-lg btn-primary" href="<c:url value="/formulario"/>">Formulario</a>
+					<div align="right">
+						<a href="http://twitter.com/share" class="twitter-share-button"
+						data-url="Ger-->" data-text="Precisando criar formulários? Use GER--> Redes Sociais - 2015.2 UFC/QXD"
+						data-count="vertical" data-via="ufcquixada"> </a>
+					</div>
+					
 			</div>
 		</div>
 	</div>

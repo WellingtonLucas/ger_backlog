@@ -9,4 +9,5 @@
 <script src="<c:url value="/resources/js/validacao.js" />"></script>
 <script src="<c:url value="/resources/js/formulario.js" />"></script>
 <script src='http://connect.facebook.net/en_US/all.js'></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <script src="<c:url value="/resources/js/facebook.js" />"></script>
